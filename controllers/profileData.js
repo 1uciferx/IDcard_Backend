@@ -39,7 +39,7 @@ exports.get_profiles = async (req, res) => {
             throw err;
         }
 
-        res.status(200).send({ "data": results });
+        res.status(200).send({ results });
     })
 }
 
@@ -55,11 +55,16 @@ exports.post_profiles = async (req, res) => {
         var email = req.body.email;
         var address = req.body.address;
         var avatar = req.body.avatar;
+        var role = req.body.role;
+        var id_number = req.body.id_number;
 
 
-        let sql = `insert into profiles_data(name,mobile,dob,blood,email,address,avatar) values (?,?,?,?,?,?,?)`;
+        
 
-        con.query(sql, [name, mobile, dob, blood, email, address, avatar], (err, results) => {
+
+        let sql = `insert into profiles_data(name,mobile,dob,blood,email,address,avatar,role,id_number) values (?,?,?,?,?,?,?,?,?)`;
+
+        con.query(sql, [name, mobile, dob, blood, email, address, avatar, role, id_number], (err, results) => {
             if (err) {
                 throw err;
             }
